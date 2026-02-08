@@ -11,10 +11,10 @@ export function createNavigation(currentPage) {
         a.textContent = item.title;
         a.href = item.link;
 
-        // Gör länken inaktiv om den är samma som currentPage
+    
         if (item.id === currentPage) {
-            a.style.pointerEvents = "none"; // gör länken oklickbar
-            a.style.opacity = "0.5";        // visuellt avaktiverad
+            a.style.pointerEvents = "none"; 
+            a.style.opacity = "1";        
         }
 
         li.appendChild(a);
