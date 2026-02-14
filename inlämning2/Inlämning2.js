@@ -1,4 +1,7 @@
 import { products } from "./products.js";
+import { createNavigation } from "../nav.js";
+
+
 
 //nedanför har du alla elemt som hämtas från html filen
 
@@ -72,6 +75,8 @@ function clearCart() {
     updateCart();
 }
 clearCartButton.addEventListener("click", clearCart);
-
+document.addEventListener("DOMContentLoaded", () => {
+createNavigation("inlämning2"); // 
 renderProducts();
 updateCart();
+});

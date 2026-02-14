@@ -1,5 +1,4 @@
 import { inlämningar } from "./inlämning.js";
-import { inlämningar } from ".Inlämning2.js";
 
 export function createNavigation(currentPage) {
     const navList = document.querySelector("nav ul");
@@ -12,10 +11,8 @@ export function createNavigation(currentPage) {
         a.textContent = item.title;
         a.href = item.link;
 
-    
-        if (item.id === currentPage) {
-            a.style.pointerEvents = "none"; 
-            a.style.opacity = "1";        
+        if (item.id === currentPage){
+            a.classList.add("active");
         }
 
         li.appendChild(a);

@@ -50,11 +50,13 @@ nav a:hover {
 }
 
 
-nav a.active {
-    background-color: aliceblue;
-    color: #3f1414;
+
+.active {
+    background-color: #5f1c1c8d;
+    color: #ffffff;
     font-weight: bold;
 }
+
 
 main {
     max-width: 1000px;
