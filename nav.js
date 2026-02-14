@@ -1,4 +1,4 @@
-import { inlamningar } from "inlamning.js";
+import { inlamningar } from "./inlamning.js";
 
 export function createNavigation(currentPage) {
     const navList = document.querySelector("nav ul");
