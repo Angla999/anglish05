@@ -1,5 +1,5 @@
 import { createNavigation } from "./nav.js";
-import { inlämningar } from "./inlämning.js";
+import { inlamningar } from "./inlamning.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const currentPage = document.body.dataset.page; 
@@ -17,7 +17,7 @@ function createCards() {
     const container = document.querySelector(".kort");
     if (!container) return;
 
-    inlämningar
+    inlamningar
         .filter(item => item.showAsCard !== false)
         .forEach(item => {
             const card = document.createElement("article");
