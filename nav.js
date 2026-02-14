@@ -1,4 +1,5 @@
 import { inlämningar } from "./inlämning.js";
+import { inlämningar } from ".Inlämning2.js";
 
 export function createNavigation(currentPage) {
     const navList = document.querySelector("nav ul");
