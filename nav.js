@@ -1,10 +1,10 @@
-import { inlämningar } from "./inlämning.js";
+import { inlamningar } from "inlamning.js";
 
 export function createNavigation(currentPage) {
     const navList = document.querySelector("nav ul");
     navList.innerHTML = "";
 
-    inlämningar.forEach(item => {
+    inlamningar.forEach(item => {
         const li = document.createElement("li");
         const a = document.createElement("a");
 
