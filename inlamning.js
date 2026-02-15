@@ -15,7 +15,7 @@ description: "Skapa ett nytt repository för alla inlämningsupgifter",
 },
 
 {
-id: "inlamning2",
+id: "inlamningtva",
 title: "Uppgift 2",
 link: "inlamningtva/index.html",
 description: "Skapa en ny sida för uppgift 2",
