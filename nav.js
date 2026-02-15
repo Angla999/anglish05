@@ -15,12 +15,6 @@ export function createNavigation(currentPage) {
         if (item.id === currentPage){
             a.classList.add("active");
         }
-        
-        let link = item.link;
-
-        if (currentPage !== "Start") {
-            link = "../" + item.link;
-        }
 
         li.appendChild(a);
         navList.appendChild(li);
