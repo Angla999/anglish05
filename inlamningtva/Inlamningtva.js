@@ -1,5 +1,5 @@
 import { products } from "./products.js";
-import { createNavigation } from "../nav.js";
+import { createNavigation } from "./nav.js";
 
 
 
