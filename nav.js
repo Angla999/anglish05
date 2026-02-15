@@ -10,9 +10,16 @@ export function createNavigation(currentPage) {
         const a = document.createElement("a");
 
         a.textContent = item.title;
-        a.href = item.link;
+        
+        let link = item.link;
 
-        if (item.id === currentPage){
+        if(currentPage !== "Start") {
+            link = "../" + item.link;
+        }
+
+        a.href = link;
+
+        if(item.id === currentPage) {
             a.classList.add("active");
         }
 
