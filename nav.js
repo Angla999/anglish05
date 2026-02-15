@@ -8,8 +8,14 @@ export function createNavigation(currentPage) {
         const li = document.createElement("li");
         const a = document.createElement("a");
 
+    const isGithub = window.location.hostname.includes("github.io");
+
         a.textContent = item.title;
         a.href = item.link;
+
+           a.href = isGithub 
+            ? "/webbprojekt/" + item.link.replace("../", "") 
+            : item.link;
 
         if (item.id === currentPage){
             a.classList.add("active");
