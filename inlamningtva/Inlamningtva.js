@@ -76,7 +76,7 @@ function clearCart() {
 }
 clearCartButton.addEventListener("click", clearCart);
 document.addEventListener("DOMContentLoaded", () => {
-createNavigation("inlamning2"); // 
+createNavigation("inlamningtva"); // 
 renderProducts();
 updateCart();
 });
