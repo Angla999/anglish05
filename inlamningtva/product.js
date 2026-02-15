@@ -1,4 +1,4 @@
-export const products =[
+export const product =[
 {
   id: "produkt-1",
   name: "Svart-Vit Fotboll",

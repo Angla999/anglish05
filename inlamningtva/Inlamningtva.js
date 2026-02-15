@@ -1,4 +1,4 @@
-import { products } from "./products.js";
+import { product } from "./product.js";
 import { createNavigation } from "./nav.js";
 
 
@@ -13,10 +13,10 @@ const clearCartButton = document.getElementById("clear-cart");
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 // Funktion för att rendera produkter på sidan
-function renderProducts() {
+function renderProduct() {
     productContainer.innerHTML = "";
 
-    products.forEach(product => {
+    product.forEach(product => {
         const productCard = document.createElement("div");
         productCard.classList.add("product-card");
 
@@ -43,7 +43,7 @@ function addToCart(productId) {
     if (existingItem) {
         existingItem.quantity ++;
     } else {
-        const product = products.find(p => p.id === productId);
+        const product = product.find(p => p.id === productId);
         cart.push({ ...product, quantity: 1 });
     };
 
@@ -77,6 +77,6 @@ function clearCart() {
 clearCartButton.addEventListener("click", clearCart);
 document.addEventListener("DOMContentLoaded", () => {
 createNavigation("inlamningtva"); // 
-renderProducts();
+renderProduct();
 updateCart();
 });
