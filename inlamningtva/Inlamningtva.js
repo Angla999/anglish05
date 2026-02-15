@@ -1,5 +1,5 @@
 import { product } from "./product.js";
-import { createNavigation } from "./nav.js";
+import { createNavigation } from "../nav.js";
 
 
 
@@ -32,7 +32,7 @@ function renderProduct() {
         `;
         const button = productCard.querySelector("button");
         button.addEventListener("click", () => addToCart(product.id));
-        
+
         productContainer.appendChild(productCard);
     });
 }
@@ -41,10 +41,10 @@ function addToCart(productId) {
     const existingItem = cart.find(item => item.id === productId);
 
     if (existingItem) {
-        existingItem.quantity ++;
+        existingItem.quantity++;
     } else {
-        const product = product.find(p => p.id === productId);
-        cart.push({ ...product, quantity: 1 });
+        const foundProduct = product.find(p => p.id === productId);
+        cart.push({ ...foundProduct, quantity: 1 });
     };
 
     updateCart();
@@ -76,7 +76,7 @@ function clearCart() {
 }
 clearCartButton.addEventListener("click", clearCart);
 document.addEventListener("DOMContentLoaded", () => {
-createNavigation("inlamningtva"); // 
-renderProduct();
-updateCart();
+    createNavigation("inlamningtva"); // 
+    renderProduct();
+    updateCart();
 });
