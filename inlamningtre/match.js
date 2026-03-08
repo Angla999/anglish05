@@ -35,7 +35,7 @@ compete() {
 
         div.innerHTML = `
         <div class="player player1">
-            <img scr="${this.#player1.image}" alt="${this.#player1.name}">
+            <img src="${this.#player1.image}" alt="${this.#player1.name}">
             <h3>${this.#player1.name}</h3>
             <p>Skill: ${this.#player1.skillLevel ?? "Unknown"}</p>
         </div>
@@ -43,7 +43,7 @@ compete() {
         <div class="vs">VS</div>
 
         <div class="player player2">
-            <img scr="${this.#player1.image}" alt="${this.#player1.name}">
+            <img src="${this.#player1.image}" alt="${this.#player1.name}">
             <h3>${this.#player2.name}</h3>
             <p>Skill: ${this.#player2.skillLevel ?? "Unknown"}</p>
         </div>
