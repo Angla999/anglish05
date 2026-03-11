@@ -43,7 +43,7 @@ compete() {
         <div class="vs">VS</div>
 
         <div class="player player2">
-            <img src="${this.#player1.image}" alt="${this.#player1.name}">
+            <img src="${this.#player2.image}" alt="${this.#player2.name}">
             <h3>${this.#player2.name}</h3>
             <p>Skill: ${this.#player2.skillLevel ?? "Unknown"}</p>
         </div>
