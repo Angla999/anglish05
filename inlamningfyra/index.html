@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Spökhusbyrån</title>
+  <script type="module" src="index.js"></script>
+  <link rel="stylesheet" href="inlamningfyra.css">
+</head>
+<body>
+
+<header>
+  <h1>Spökhusbyrån</h1>
+  <p>Vågar du hyra ett av våra spökhus?</p>
+</header>
+
+<main>
+
+  <section id="intro">
+    <h2>Våra spökhus</h2>
+    <p>Välj mellan hemsökta slott, mystiska fyrar och skrämmande stugor.</p>
+  </section>
+
+  <section id="filters">
+
+    <label>
+      Maxpris:
+      <input type="number" id="maxPrice">
+    </label>
+
+    <label>
+      Skräcknivå:
+      <span id="scareValue">Mysigt</span>
+      <input type="range" id="scareLevel" min="1" max="5" value="1">
+    </label>
+
+    <label>
+      Spöktyp:
+      <select id="ghostType">
+        <option value="all">Alla</option>
+      </select>
+    </label>
+
+    <label>
+      <input type="checkbox" id="wifi">
+      Kräver WiFi
+    </label>
+
+  </section>
+
+  <section id="houses">
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Spökhusbyrån AB</p>
+</footer>
+</body>
+</html>
