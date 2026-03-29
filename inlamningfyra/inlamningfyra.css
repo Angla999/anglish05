@@ -114,7 +114,7 @@ main {
 }
 
 #wifi:checked::after {
-  content: "x";
+  content: "✓";
   color: #05070f;
   position: absolute;
   top: 1px;
@@ -408,144 +408,11 @@ button:hover {
   justify-content: center;
 }
 
-.back-btn {
-  display: inline-block;
-  margin: 20px;
-  padding: 8px 14px;
-  color: #4db8ff;
-  border: 1px solid #2a3b80;
-  border-radius: 20px;
-  text-decoration: none;
+#error {
+  color: #ff5c5c;
+  padding: 10px;
 }
 
-.detail-page #house {
-  margin: 30px auto 20px;
-  max-width: 700px;
-}
-
-.detail-card {
-  background: #121a33;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 0 25px rgba(0, 0, 50, 0.6);
-  text-align: center;
-}
-
-.detail-card img {
-  width: 100%;
-  height: 450px;
-  object-fit: cover;
-  border-radius: 14px;
-  margin-bottom: 15px;
-}
-
-.detail-content {
-  padding: 10px 0 0;
-}
-
-.detail-content h1 {
-  color: #4db8ff;
-  margin-bottom: 6px;
-}
-
-.detail-content .location {
-  opacity: 0.7;
-  margin-bottom: 10px;
-}
-
-.detail-page .badges {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 10px 0 15px;
-}
-
-.detail-page .price {
-  background: #1f3d7a;
-  padding: 6px 12px;
-  border-radius: 20px;
-  color: #4db8ff;
-  font-size: 0.8rem;
-}
-
-.detail-page .scare {
-  background: #2a2f5a;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-}
-
-#karta {
-  max-width: 700px;
-  margin: 20px auto;
-}
-
-.map-card {
-  background: #121a33;
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 0 25px rgba(0, 0, 50, 0.6);
-}
-
-.map-card h2 {
-  color: #4db8ff;
-  text-align: center;
-  margin-bottom: 8px;
-}
-
-.map-location {
-  text-align: center;
-  margin-bottom: 14px;
-  opacity: 0.8;
-}
-
-#map {
-  width: 100%;
-  height: 350px;
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 15px;
-}
-
-.place-info {
-  background: #0f1a3a;
-  border: 1px solid #2a3b80;
-  border-radius: 12px;
-  padding: 14px;
-  text-align: center;
-}
-
-.place-info p {
-  margin-bottom: 6px;
-}
-
-.error-box {
-  background: #121a33;
-  max-width: 700px;
-  margin: 30px auto;
-  padding: 20px;
-  border-radius: 16px;
-  text-align: center;
-}
-
-.top-back-nav {
-  padding: 15px 20px 0;
-}
-
-.top-back-nav a {
-  display: inline-block;
-  padding: 8px 14px;
-  border: 1px solid #2a3b80;
-  border-radius: 20px;
-  background: rgba(18, 26, 51, 0.9);
-  color: #4db8ff;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.top-back-nav a:hover {
-  background: rgba(77, 184, 255, 0.1);
-}
 
 footer {
   text-align: center;
