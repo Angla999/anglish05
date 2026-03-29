@@ -11,12 +11,19 @@ const wifiInput = document.querySelector("#wifi");
 let allHouses = [];
 
 async function init() {
-  const houses = await fetchData("./house.json");
-  allHouses = houses;
+  try {
+    const houses = await fetchData("./house.json");
+    allHouses = houses;
 
-  populateGhosts(houses);
-  render(houses);
-  setupFilters();
+    populateGhosts(houses);
+
+    render(houses);
+    setupFilters();
+
+  } catch (err) {
+    container.innerHTML = "<p>Fel vid laddning</p>";
+    console.log(err);
+  }
 }
 
 function populateGhosts(houses) {
@@ -30,30 +37,41 @@ function populateGhosts(houses) {
   ghostSet.forEach(g => {
     const option = document.createElement("option");
     option.value = g;
-    option.textContent = g.charAt(0).toUpperCase() + g.slice(1);
+    option.textContent = g;
     ghostInput.appendChild(option);
   });
 }
 
 function render(houses) {
   if (houses.length === 0) {
-    container.innerHTML = "<p>Inga hus</p>";
+    container.innerHTML = "<p>Inga hus matchar filtreringen</p>";
     return;
   }
-
+  
   container.innerHTML = houses.map(h => `
+    
     <div class="card">
-      <img src="${h.image}">
-      <h3>${h.name}</h3>
-      <p>${h.location}</p>
-      <p>${h.pricePerNight} kr</p>
-      <p>${getScareLevelText(h.scareLevel)}</p>
-      <a href="house.html?id=${h.id}">Boka</a>
+      <img src="${h.image}" alt="${h.name}">
+
+      <div class="card-content">
+        <h3>${h.name}</h3>
+        <p class="location">${h.location}</p>
+
+        <div class="badges">
+          <span class="price">${h.pricePerNight} kr/natt</span>
+          <span class="scare">${getScareLevelText(h.scareLevel)}</span>
+        </div>
+
+        <a class="card-button" href="house.html?id=${h.id}">Boka</a>
+
+      </div>
     </div>
+
   `).join("");
 }
 
 function setupFilters() {
+
   scareInput.addEventListener("input", () => {
     scareText.textContent = getScareLevelText(scareInput.value);
     filter();
@@ -69,12 +87,13 @@ function filter() {
   const scareLevel = Number(scareInput.value);
   const ghostType = ghostInput.value;
   const wifi = wifiInput.checked;
-
   const filtered = allHouses.filter(h => {
+
     if (maxPrice && h.pricePerNight > maxPrice) return false;
     if (h.scareLevel < scareLevel) return false;
     if (ghostType !== "all" && !h.ghostTypes.includes(ghostType)) return false;
     if (wifi && !h.hasWifi) return false;
+
     return true;
   });
 

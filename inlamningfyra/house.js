@@ -1,116 +1,104 @@
 import { fetchData, getScareLevelText } from "./utils.js";
 import Booking from "./booking.js";
 
-const params = new URLSearchParams(window.location.search);
-const id = Number(params.get("id"));
-
-const container = document.querySelector("#house");
-const mapSection = document.querySelector("#karta");
-const form = document.querySelector("#bookingForm");
-const totalEl = document.querySelector("#total");
-const confirmEl = document.querySelector("#confirmation");
+const id = new URLSearchParams(window.location.search).get("id");
 
 let booking;
 
-async function init() {
+async function start() {
+
+  const houseDiv = document.querySelector("#house");
+  const mapDiv = document.querySelector("#karta");
+
+  let data;
+
   try {
-    if (!id) {
-      container.innerHTML = "<p>Ingen ID i URL</p>";
-      return;
-    }
-
-    const houses = await fetchData("./house.json");
-    const house = houses.find(h => h.id === id);
-
-    if (!house) {
-      container.innerHTML = "<p>Hittar inte huset</p>";
-      return;
-    }
-
-    renderHouse(house);
-    renderMap(house);
-
-    booking = new Booking(house);
-    setupBooking();
-
-  } catch (err) {
-    console.log(err);
-    container.innerHTML = "<p>Fel vid laddning</p>";
+    data = await fetchData("./house.json");
+  } catch (e) {
+    houseDiv.innerHTML = "något gick fel";
+    return;
   }
-}
 
-function renderHouse(h) {
-  container.innerHTML = `
-    <div class="detail-card">
-      <img src="${h.image}" alt="${h.name}">
-      <h1>${h.name}</h1>
-      <p>${h.location}</p>
+  let found;
 
-      <div class="badges">
-        <span class="price">${h.pricePerNight} kr</span>
-        <span class="scare">${getScareLevelText(h.scareLevel)}</span>
-      </div>
-
-      <p>${h.description}</p>
-    </div>
-  `;
-}
-
-function renderMap(h) {
-  if (!mapSection) return;
-
-  mapSection.innerHTML = `
-    <div class="map-card">
-      <h2>Karta</h2>
-      <div id="map" style="height:400px;"></div>
-      <p id="place">Laddar plats...</p>
-    </div>
-  `;
-
-  setTimeout(() => {
-    if (typeof L === "undefined") {
-      document.querySelector("#place").textContent = "Karta kunde inte laddas";
-      return;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].id == id) {
+      found = data[i];
     }
+  }
 
-    const map = L.map("map").setView(
-      [h.coordinates.lat, h.coordinates.lng],
-      10
+  if (!found) {
+    houseDiv.innerHTML = "hittade inget hus...";
+    return;
+  }
+
+  houseDiv.innerHTML =
+    "<div class='detail-card'>" +
+      "<img src='" + found.image + "'>" +
+      "<h1>" + found.name + "</h1>" +
+      "<p>" + found.location + "</p>" +
+      "<div class='badges'>" +
+        "<span class='price'>" + found.pricePerNight + " kr</span>" +
+        "<span class='scare'>" + getScareLevelText(found.scareLevel) + "</span>" +
+      "</div>" +
+      "<p>" + found.description + "</p>" +
+    "</div>";
+
+  mapDiv.innerHTML =
+    "<div class='map-card'>" +
+      "<h2>Karta</h2>" +
+      "<div id='map'></div>" +
+      "<p id='place'>laddar...</p>" +
+    "</div>";
+
+  const map = L.map("map").setView(
+    [found.coordinates.lat, found.coordinates.lng],
+    10
+  );
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+
+  L.marker([found.coordinates.lat, found.coordinates.lng])
+    .addTo(map)
+    .bindPopup(found.name)
+    .openPopup();
+
+  try {
+    const res = await fetch(
+      "https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=" +
+        found.coordinates.lat +
+        "&lon=" +
+        found.coordinates.lng
     );
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+    const json = await res.json();
 
-    L.marker([h.coordinates.lat, h.coordinates.lng])
-      .addTo(map)
-      .bindPopup(h.name)
-      .openPopup();
+    document.querySelector("#place").innerHTML =
+      "Land: " + (json.address.country || "?");
 
-    fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${h.coordinates.lat}&lon=${h.coordinates.lng}`)
-      .then(res => res.json())
-      .then(data => {
-        const country = data.address?.country || "Okänt land";
-        document.querySelector("#place").textContent = "Land: " + country;
-      })
-      .catch(() => {
-        document.querySelector("#place").textContent = "Kunde inte hämta plats";
-      });
+  } catch (e) {
+    document.querySelector("#place").innerHTML = "kunde inte hämta plats";
+  }
 
-  }, 50);
-}
+  booking = new Booking(found);
 
-function setupBooking() {
-  form.addEventListener("input", () => {
+  const form = document.querySelector("#bookingForm");
+  const totalEl = document.querySelector("#total");
+  const confirmEl = document.querySelector("#confirmation");
+
+  form.addEventListener("input", function () {
+
     const days = Number(document.querySelector("#days").value);
     const code = document.querySelector("#code").value;
+    const boxes = document.querySelectorAll(".addon:checked");
+    let addons = [];
 
-    const addons = [...document.querySelectorAll(".addon:checked")]
-      .map(a => Number(a.value));
-
-    const total = booking.calculate(days || 0, addons, code);
-    totalEl.textContent = "Total: " + total + " kr";
+    boxes.forEach(b => addons.push(Number(b.value)));
+    let total = booking.calculate(days || 0, addons, code);
+    totalEl.innerHTML = "Total: " + total + " kr";
   });
 
-  form.addEventListener("submit", e => {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
 
     const date = document.querySelector("#date").value;
@@ -119,12 +107,12 @@ function setupBooking() {
     const error = booking.validate(date, days);
 
     if (error) {
-      confirmEl.textContent = error;
-      return;
+      confirmEl.innerHTML = error;
+    } else {
+      confirmEl.innerHTML = booking.confirm(date, days);
     }
-
-    confirmEl.innerHTML = booking.confirm(date, days);
   });
+
 }
 
-init();
+start();
