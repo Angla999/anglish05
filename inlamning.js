@@ -28,6 +28,14 @@ title: "Uppgift 3",
 link: "inlamningtre/index.html",
 description: "Skapa en ny sida för uppgift 3",
 
+},
+
+{
+id: "inlamningfyra",
+title: "Uppgift 4",
+link: "inlamningfyra/index.html",
+description: "Skapa en ny sida för uppgift 4",
+
 }
 
 ];

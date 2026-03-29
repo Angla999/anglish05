@@ -157,3 +157,9 @@ body .winner-box {
     margin-top: 15px;
     font-weight: bold;
 }
+
+nav a.active {
+    background-color: #c3d9e9;
+    color: #1f3a60;
+    font-weight: bold;
+}

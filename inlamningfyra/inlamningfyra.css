@@ -528,6 +528,25 @@ button:hover {
   text-align: center;
 }
 
+.top-back-nav {
+  padding: 15px 20px 0;
+}
+
+.top-back-nav a {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid #2a3b80;
+  border-radius: 20px;
+  background: rgba(18, 26, 51, 0.9);
+  color: #4db8ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.top-back-nav a:hover {
+  background: rgba(77, 184, 255, 0.1);
+}
+
 footer {
   text-align: center;
   padding: 20px;
