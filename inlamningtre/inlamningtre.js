@@ -1,19 +1,8 @@
 import Tournament from "./tournament.js";
 
-const players = [
-    "Spelare 1",
-    "Spelare 2",
-    "Spelare 3",
-    "Spelare 4",
-    "Spelare 5",
-    "Spelare 6",
-    "Spelare 7",
-    "Spelare 8"
-];
-
 const container = document.querySelector("#tournament");
-
 const startBtn = document.querySelector("#startBtn");
+const resetBtn = document.querySelector("#resetBtn");
 
 async function init(){
     const response = await fetch("./contestants.json");
@@ -23,6 +12,10 @@ async function init(){
 
     startBtn.addEventListener("click", () => {
         tournament.start(players);
+    });
+
+    resetBtn.addEventListener("click", () => {
+        container.innerHTML = "";
     });
 }
 

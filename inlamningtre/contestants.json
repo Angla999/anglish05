@@ -1,58 +1,58 @@
 [
     {
-        "id": "01",
-        "name": "Steel Cruschers",
-        "image": "img-tre/ett.jpg",
-        "skillLevel": 9,
-        "catchphrase": "Crush or be crushed!"
-    },
-    {
-        "id": "02",
-        "name": "Iron Titan",
-        "image":"img-tre/tva.jpg",
-        "skillLevel": 8,
-        "catchphrase": "Unstoppable force, immovable object!"
-    },
-    {
         "id": "03",
         "name": "Metal Mayhem",
-        "image":"img-tre/tre.jpg", 
+        "image":"img/robot1.jpg", 
         "skillLevel": 5,
         "catchphrase": "Bringing the heat with every strike!"
     },
     {
         "id": "04",
         "name": "Titanium Thunder",
-        "image":"img-tre/fyra.jpg",
+        "image":"img/robot2.jpg",
         "skillLevel": 6,
         "catchphrase": "Feel the thunder of titanium!"
     },
     {
         "id": "05",
         "name": "Steel Storm",
-        "image": "img-tre/fem.jpg",
+        "image": "img/robot3.jpg",
         "skillLevel": 5,
         "catchphrase": "Raining down steel fury!"
     },
     {
         "id": "06",
         "name": "Ironclad Warriors",
-        "image":"img-tre/sex.jpg",
+        "image":"img/robot4.jpg",
         "skillLevel": 8,
         "catchphrase": null
     },
     {
         "id": "07",
         "name": "Metal Mavericks",
-        "image": "img-tre/sju.jpg",
+        "image": "img/robot5.jpg",
         "skillLevel": null,
         "catchphrase": "Defying the odds with metal might!"
     },
     {
         "id": "08",
         "name": "Titanium Titans",
-        "image": "img-tre/atta.jpg",
+        "image": "img/robot6.jpg",
         "skillLevel": 7,
         "catchphrase": "Rising above with titanium strength!"
+    },
+    {
+        "id": "01",
+        "name": "Steel Cruschers",
+        "image": "img/robot7.jpg",
+        "skillLevel": 9,
+        "catchphrase": "Crush or be crushed!"
+    },
+    {
+        "id": "02",
+        "name": "Iron Titan",
+        "image":"img/robot8.jpg",
+        "skillLevel": 8,
+        "catchphrase": "Unstoppable force, immovable object!"
     }
 ]

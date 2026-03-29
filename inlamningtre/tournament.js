@@ -10,46 +10,60 @@ export default class Tournament {
 
     start(players) {
         this.#container.innerHTML = "";
-        
-        const quater = this.playRound(players, "kvartsfinal");
-        const semi = this.playRound(quater, "Semifinal");
-        const final = this.playRound(semi, "Final");
 
-        const winner = final[0];
+        this.players = players;
+        this.roundIndex = 0;
+        this.roundNames = ["Kvartsfinal", "Semifinal", "Final"];
 
-        const result = document.createElement("h1");
-        result.textContent = `Vinnare: ${winner.name}`;
-        this.#container.appendChild(result);
+        this.wrapper = document.createElement("div");
+        this.wrapper.classList.add("tournament-grid");
+        this.#container.appendChild(this.wrapper);
+
+        this.run();
     }
 
-    playRound(players, title){
+    run() {
+
+        if (this.players.length === 1) {
+            const win = document.createElement("div");
+            win.classList.add("winner-box");
+            win.innerHTML = `<p>${this.players[0].name}</p>`;
+            this.wrapper.lastChild.appendChild(win);
+            return;
+        }
 
         const roundDiv = document.createElement("div");
         roundDiv.classList.add("round");
 
         const h2 = document.createElement("h2");
-        h2.textContent = title;
-
+        h2.textContent = this.roundNames[this.roundIndex];
         roundDiv.appendChild(h2);
 
         const winners = [];
 
-        for(let i=0;i<players.length;i+=2){
-
-            const match = new Match(players[i], players[i+1]);
+        for (let i = 0; i < this.players.length; i += 2) {
+            const match = new Match(this.players[i], this.players[i + 1]);
             roundDiv.appendChild(match.createElement());
-            
             match.compete();
             winners.push(match.winner);
-            
         }
 
-        this.#container.appendChild(roundDiv);
+        this.wrapper.appendChild(roundDiv);
 
-        return winners;
+        this.players = winners;
+        this.roundIndex++;
+
+        let frames = 0;
+
+        const wait = () => {
+            frames++;
+            if (frames > 60) { 
+                this.run();
+            } else {
+                requestAnimationFrame(wait);
+            }
+        };
+
+        requestAnimationFrame(wait);
     }
-
 }
-
-
-    
