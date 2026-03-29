@@ -114,7 +114,7 @@ main {
 }
 
 #wifi:checked::after {
-  content: "✓";
+  content: "x";
   color: #05070f;
   position: absolute;
   top: 1px;

@@ -6,16 +6,15 @@ export default class Booking {
   calculate(days, addons, code) {
     let total = this.house.pricePerNight * days;
 
-    // tillägg
+  
     addons.forEach(addon => {
       if (addon === 150) {
-        total += addon * days; // frukost per dag
+        total += addon * days; 
       } else {
         total += addon; // engång
       }
     });
 
-    // rabatt
     if (code === "GHOST20") {
       total *= 0.8;
     }
