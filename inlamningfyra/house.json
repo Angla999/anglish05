@@ -9,7 +9,7 @@
     "scareLevel": 3,
     "ghostTypes": ["poltergeist", "skuggvarelse"],
     "hasWifi": true,
-    "image": "img/skrack1.jpg"
+    "image": "img/skrack.jpg"
   },
   {
     "id": 2,
