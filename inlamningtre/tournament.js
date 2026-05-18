@@ -1,69 +1,120 @@
 import Match from "./match.js";
 
 export default class Tournament {
-
     #container;
+    #button;
+    #players = [];
+    #currentPlayers = [];
+    #roundIndex = 0;
+    #roundNames = ["Kvartsfinal", "Semifinal", "Final"];
+    #matches = [];
+    #grid = null;
 
-    constructor(container) {
+    constructor(container, button) {
         this.#container = container;
+        this.#button = button;
     }
 
     start(players) {
         this.#container.innerHTML = "";
 
-        this.players = players;
-        this.roundIndex = 0;
-        this.roundNames = ["Kvartsfinal", "Semifinal", "Final"];
+        this.#players = [...players];
+        this.#currentPlayers = [...players];
+        this.#roundIndex = 0;
+        this.#matches = [];
+        this.#grid = null;
 
-        this.wrapper = document.createElement("div");
-        this.wrapper.classList.add("tournament-grid");
-        this.#container.appendChild(this.wrapper);
+        this.showStartMessage();
 
-        this.run();
+        this.#button.disabled = false;
+        this.#button.textContent = "Simulera kvartsfinal";
     }
 
-    run() {
+    showStartMessage() {
+        const startBox = document.createElement("div");
+        startBox.classList.add("start-box");
 
-        if (this.players.length === 1) {
-            const win = document.createElement("div");
-            win.classList.add("winner-box");
-            win.innerHTML = `<p>${this.players[0].name}</p>`;
-            this.wrapper.lastChild.appendChild(win);
+        startBox.innerHTML = `
+            <h2>Redo för Robotarenan</h2>
+            <p>Klicka på knappen för att simulera kvartsfinalen.</p>
+        `;
+
+        this.#container.appendChild(startBox);
+    }
+
+    createGridIfNeeded() {
+        if (this.#grid) return;
+
+        this.#container.innerHTML = "";
+
+        this.#grid = document.createElement("div");
+        this.#grid.classList.add("tournament-grid");
+        this.#container.appendChild(this.#grid);
+    }
+
+    simulateRound() {
+        this.createGridIfNeeded();
+
+        const roundDiv = document.createElement("section");
+        roundDiv.classList.add("round");
+
+        const title = document.createElement("h2");
+        title.textContent = this.#roundNames[this.#roundIndex];
+        roundDiv.appendChild(title);
+
+        this.#matches = [];
+
+        for (let i = 0; i < this.#currentPlayers.length; i += 2) {
+            const match = new Match(this.#currentPlayers[i], this.#currentPlayers[i + 1]);
+            this.#matches.push(match);
+            roundDiv.appendChild(match.createElement());
+        }
+
+        this.#grid.appendChild(roundDiv);
+
+        this.#matches.forEach(match => {
+            match.compete();
+        });
+
+        this.#currentPlayers = this.#matches.map(match => match.winner);
+
+        if (this.#currentPlayers.length === 1) {
+            this.showWinner();
+            this.#button.disabled = true;
+            this.#button.textContent = "Turneringen är klar";
             return;
         }
 
-        const roundDiv = document.createElement("div");
-        roundDiv.classList.add("round");
+        this.#roundIndex++;
+        this.updateButtonText();
+    }
 
-        const h2 = document.createElement("h2");
-        h2.textContent = this.roundNames[this.roundIndex];
-        roundDiv.appendChild(h2);
+    updateButtonText() {
+        const nextRound = this.#roundNames[this.#roundIndex];
 
-        const winners = [];
-
-        for (let i = 0; i < this.players.length; i += 2) {
-            const match = new Match(this.players[i], this.players[i + 1]);
-            roundDiv.appendChild(match.createElement());
-            match.compete();
-            winners.push(match.winner);
+        if (nextRound === "Semifinal") {
+            this.#button.textContent = "Simulera semifinal";
         }
 
-        this.wrapper.appendChild(roundDiv);
+        if (nextRound === "Final") {
+            this.#button.textContent = "Simulera final";
+        }
+    }
 
-        this.players = winners;
-        this.roundIndex++;
+    showWinner() {
+        const winner = this.#currentPlayers[0];
 
-        let frames = 0;
+        const winnerBox = document.createElement("section");
+        winnerBox.classList.add("winner-box");
 
-        const wait = () => {
-            frames++;
-            if (frames > 60) { 
-                this.run();
-            } else {
-                requestAnimationFrame(wait);
-            }
-        };
+        winnerBox.innerHTML = `
+            <h2>Vinnare</h2>
+            <img src="${winner.image}" alt="${winner.name}">
+            <h3>${winner.name}</h3>
+            <p>Skill: ${winner.skillLevel ?? "Okänd"}</p>
+            <p>${winner.catchphrase ?? "Ingen catchphrase"}</p>
+        `;
 
-        requestAnimationFrame(wait);
+        this.#grid.appendChild(winnerBox);
     }
 }

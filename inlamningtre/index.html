@@ -3,28 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tournament</title>
+    <title>Robotarenan</title>
 
     <link rel="stylesheet" href="../global.css">
     <link rel="stylesheet" href="inlamningtre.css">
-    <script type="module" src="inlamningtre.js"></script>
+
     <script type="module" src="../main.js"></script>
-    
-    <body data-page="inlamningtre"></body>
+    <script type="module" src="inlamningtre.js"></script>
 </head>
-<body>
+
+<body data-page="inlamningtre">
 
 <header>
-<h1>Uppgift 3 - ROBOTARENAN</h1>
-<H2>ROBOTARENAN</H2>
-<nav>
-<ul></ul> 
-</nav>
+    <h1>Uppgift 3 - ROBOTARENAN</h1>
+    <h2>ROBOTARENAN</h2>
+
+    <nav>
+        <ul></ul>
+    </nav>
 </header>
+
 <main>
-    <button id = "startBtn" > Starta Tunering</button>
-    <button id="resetBtn">Starta om</button>
-    <div id="tournament"></div>
+    <section class="controls">
+        <button id="simulateBtn">Simulera kvartsfinal</button>
+        <button id="resetBtn">Starta om</button>
+    </section>
+
+    <section id="tournament"></section>
 </main>
 
 </body>

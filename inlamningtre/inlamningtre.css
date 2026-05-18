@@ -1,165 +1,264 @@
+* {
+    box-sizing: border-box;
+}
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(164, 164, 255);
     margin: 0;
-    font-style: italic;
-    color: black;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background:#3b1f47;
 }
 
-body header {
+
+header {
     text-align: center;
-    padding: 20px;
-    background-color: rgb(136, 97, 255);
-    border-bottom: 2px solid #444;
+    padding: 32px 20px 28px;
+    background: rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-body nav ul {
+header h1 {
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #cfc7ff;
+}
+
+header h2 {
+    margin: 14px 0 0;
+    font-size: 48px;
+    letter-spacing: 4px;
+}
+
+nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 24px 0 0;
     padding: 0;
 }
 
-body nav li {
-    background-color: #1f3a60;
-    border-radius: 6px;
+nav li {
+    background: transparent;
+    border: none;
 }
 
-body nav a {
+nav a {
     display: block;
-    padding: 8px 16px;
+    padding: 10px 22px;
+    border: 2px solid white;
+    border-radius: 999px;
     color: white;
     text-decoration: none;
-}
-
-body nav a.active {
-    background-color: #c3d9e9;
-    color: #1f3a60;
     font-weight: bold;
+    background: transparent;
 }
 
-body nav a:hover {
-    background-color: #000;
+nav a:hover,
+nav a.active {
+    background: white;
+    color: #241b4f;
 }
 
-body .controls {
+main {
+    width: 100%;
+    padding-bottom: 60px;
+}
+
+.controls {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin: 55px 20px 45px;
 }
 
-body #startBtn,
-body #resetBtn {
-    background-color: #ff4d4d;
-    color: white;
+button {
+    min-width: 200px;
     border: none;
-    padding: 10px 18px;
-    border-radius: 6px;
+    border-radius: 999px;
+    padding: 15px 28px;
+    background: #ff8c42;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     cursor: pointer;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
 }
 
-body #startBtn:hover,
-body #resetBtn:hover {
-    background-color: #cc0000;
+button:hover {
+    transform: translateY(-2px);
 }
 
-body main {
-    display: block;
+button:disabled {
+    background: #777;
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
 }
 
-body #tournament {
+#tournament {
+    width: 100%;
+    padding: 0 30px 60px;
     display: flex;
     justify-content: center;
-    margin: 40px auto;
 }
 
-body .tournament-grid {
+.start-box {
+    width: 100%;
+    max-width: 480px;
+    padding: 36px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 22px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+}
+
+.start-box h2 {
+    margin: 0 0 12px;
+    font-size: 28px;
+}
+
+.start-box p {
+    margin: 0;
+    color: #e0e0e0;
+}
+
+.tournament-grid {
     display: grid;
-    grid-template-columns: repeat(3, auto);
-    gap: 40px;
+    grid-template-columns: repeat(4, 260px);
+    gap: 32px;
+    align-items: start;
+    justify-content: center;
+    width: fit-content;
+    margin-left: 500px;
+    padding-right: 120px;
 }
 
-body .round {
+.round {
+    width: 260px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    align-items: center;
 }
 
-body .round h2 {
+.round h2 {
+    margin: 0 0 8px;
+    font-size: 26px;
     text-align: center;
 }
 
-body .round:nth-child(2) {
-    margin-top: 60px;
+.round:nth-child(2) {
+    margin-top: 70px;
 }
 
-body .round:nth-child(3) {
-    margin-top: 120px;
+.round:nth-child(3) {
+    margin-top: 145px;
 }
 
-body .match {
+.winner-box {
+    margin-top: 185px;
+}
+
+.match {
+    width: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px;
+    background: rgba(22, 55, 80, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+.player {
+    width: 102px;
+    padding: 9px;
+    background: #eef3f7;
+    color: #1b1b1b;
+    border-radius: 14px;
+    text-align: center;
+    transition: 0.25s ease;
+}
+
+.player img {
+    width: 84px;
+    height: 84px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.player h3 {
+    margin: 8px 0 5px;
+    font-size: 14px;
+    line-height: 1.25;
+}
+
+.player p {
+    margin: 4px 0;
+    font-size: 12px;
+    line-height: 1.35;
+}
+
+
+.vs {
+    width: 28px;
     display: flex;
     align-items: center;
-    gap: 15px;
-    background-color: rgb(35, 57, 76);
-    padding: 12px;
-    border-radius: 10px;
-    max-width: 260px;
-}
-
-body .player {
-    flex: 1;
-    background-color: aliceblue;
-    padding: 8px;
-    border-radius: 8px;
-    text-align: center;
-}
-
-body .player img {
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-body .player h3 {
+    justify-content: center;
     font-size: 14px;
-    margin: 5px 0;
-}
-
-body .player p {
-    font-size: 12px;
-    margin: 2px 0;
-}
-
-body .vs {
+    font-weight: bold;
     color: white;
-    font-weight: bold;
 }
 
-body .winner {
-    background-color: rgb(76, 204, 82);
+
+.winner {
+    background: #5ee37d;
+    transform: scale(1.03);
 }
 
-body .loser {
-    opacity: 0.6;
+.loser {
+    opacity: 0.45;
 }
 
-body .winner-box {
-    background-color: gold;
-    color: black;
-    padding: 10px;
-    border-radius: 10px;
+.winner-box {
+    width: 240px;
+    padding: 24px;
     text-align: center;
-    margin-top: 15px;
+    color: #1d1d1d;
     font-weight: bold;
+    background: linear-gradient(135deg, #ffd700, #ffb703);
+    border-radius: 22px;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
 }
 
-nav a.active {
-    background-color: #c3d9e9;
-    color: #1f3a60;
-    font-weight: bold;
+.winner-box h2 {
+    margin: 0 0 12px;
+    font-size: 28px;
+}
+
+.winner-box h3 {
+    margin: 12px 0 8px;
+    font-size: 20px;
+}
+
+.winner-box p {
+    margin: 5px 0;
+    font-size: 13px;
+}
+
+.winner-box img {
+    width: 125px;
+    height: 125px;
+    object-fit: cover;
+    border-radius: 16px;
 }

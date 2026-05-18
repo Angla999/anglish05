@@ -1,21 +1,24 @@
 import Tournament from "./tournament.js";
 
-const container = document.querySelector("#tournament");
-const startBtn = document.querySelector("#startBtn");
+const tournamentContainer = document.querySelector("#tournament");
+const simulateBtn = document.querySelector("#simulateBtn");
 const resetBtn = document.querySelector("#resetBtn");
 
-async function init(){
+let tournament;
+
+async function init() {
     const response = await fetch("./contestants.json");
     const players = await response.json();
 
-    const tournament = new Tournament(container);
+    tournament = new Tournament(tournamentContainer, simulateBtn);
+    tournament.start(players);
 
-    startBtn.addEventListener("click", () => {
-        tournament.start(players);
+    simulateBtn.addEventListener("click", () => {
+        tournament.simulateRound();
     });
 
     resetBtn.addEventListener("click", () => {
-        container.innerHTML = "";
+        tournament.start(players);
     });
 }
 
