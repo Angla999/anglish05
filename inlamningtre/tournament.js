@@ -35,7 +35,7 @@ export default class Tournament {
         startBox.classList.add("start-box");
 
         startBox.innerHTML = `
-            <h2>Redo för Robotarenan</h2>
+            <h2>Starta turnering</h2>
             <p>Klicka på knappen för att simulera kvartsfinalen.</p>
         `;
 
